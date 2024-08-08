@@ -1,0 +1,8 @@
+h1{
+    color:rgba(255, 30, 101, 0.621);
+    background-color:beige;
+}
+h1:hover{
+    color :rgba(255, 234, 0, 0.9);
+    
+}
