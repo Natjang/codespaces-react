@@ -9,7 +9,7 @@
 import './Hello.css';
 export default function Hello(props){
     return(
-        <h1>Natthaya</h1>
+        <h1>Natjang so cute **</h1>
     );
 
 
