@@ -1,45 +1,34 @@
-import { useState } from 'react';
-import './Counter.css';
+import {useState} from "react";
+import {useRef} from "react";
+import {useEffect} from "react";
+
+function Item({name,isPacked}){
+ if(isPacked)
+ {
+    return (<li>{name} ! </li>);
+ }
+ return (<li>{name}  </li>);
+}
+function Item1({name,isPacked}){
+    return ( isPacked ? <li style={{color:'red'}}>{name}! </li> : <li style={{color:'green'}}>{name} </li> );
+   }
+export default function Counter(){
+    const [keywords,setKeywords] = useState("");
+    const items=[{id:0,name:"Battery"},
+                 {id:1,name:"Cloth"},
+                 {id:2,name:"Jacket"},
+                 {id:3,name:"Sunglass"}]
+    const  i = items.filter(it=>it.name.toLowerCase().match(keywords.toLowerCase()));            
+    const  t= i.map((it)=><li key={it.id}><b>{it.name}</b></li>);
 
 
-function Item({name, isPacked}) {
-    if (isPacked) {
-
-        return (
-                <li style={{color:'green'}}> {name} ✓ </li>
-        );
+    return (
+        <>         
+        <input type="text" value={keywords} onChange={e=>setKeywords(e.target.value)} />  
+        <ol>
+            {t}  
+        </ol>
+        </>
+    );
 
     }
-    return (<li style={{color:'red'}}>{name} X </li>);
-
-}
-export default function Counter() {
-    const Item1 = ['Battery','Cloth','Sunglass','Hat','Underwear'];
-    const [count, setCount] = useState(10);
-    const [value, setValue] = useState("Type here =>");
-    //const OnTextChange=event=>{setValue(event.target.value);
-    
-    const Item_list=Item1.map((IT)=><li>{IT}</li>)
-    return (<>
-    <ol>
-        <p>{Item_list}</p>
-        <Item name = "Battery" isPacked={false} /> 
-        <Item name = "Cloth" isPacked={true}/> 
-        <Item name = "Sunglass"/> 
-        <Item name = "Hat" isPacked={true}/> 
-        <Item name = "Underwear"/> 
-      
-    </ol>
-        
-    <button onClick={() => setCount(count + 1)}> Click me </button>
-        <button onClick={() => setCount(0)}> Reset </button>
-        <p> You clicked {count} times </p>
-
-        <input
-            type="text"
-            value={value}
-            onChange={(event) => setValue(event.target.value)} />
-        <p> You type value {value} length {value.length} </p>
-    </>);
-
-}
