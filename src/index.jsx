@@ -6,14 +6,28 @@ import reportWebVitals from './reportWebVitals';
 import Hello from './Hello';
 import Counter from './Counter';
 import Form from './Form';
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Hello name ="Natjang" surname ="eiei"/>
-   
-    <Form/>
-    
+    {/*<Hello name ="Natjang" surname ="eiei"/>*/}
+    <BrowserRouter>
+      <>
+        <ul>
+          <li><Link to="/">Hello</Link></li>
+          <li><Link to="/Counter">Counter</Link></li>
+          <li><Link to="/BMI">BMI</Link></li>
+        </ul>
+      </>
+      <Routes>
+        <Route path ="/" element={<Hello/>}/>
+        <Route path ="/Counter" element={<Counter/>}/>
+        <Route path ="/BMI" element={<Form />}/>
+
+      </Routes>
+      
+    </BrowserRouter>
   </React.StrictMode>
 );
 
